@@ -28,7 +28,14 @@ provider "aws" {
   region = "eu-west-1"
 }
 
+locals {
+  project_name= "Hola DavidT"
+}
+
 resource "aws_instance" "davidT" {
-  ami = data.aws_ami.ubuntu.idcd
-  instance_type=var.instance_typecd
+  ami = data.aws_ami.ubuntu.id
+  instance_type=var.instance_type
+  tags={
+    "Name"="TAG-server-${local.project_name}"
+  }
 }
